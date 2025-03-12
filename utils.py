@@ -23,7 +23,7 @@ def get_neighbors(pos, map_data):
         # 检查边界
         if 0 <= new_x < map_data.shape[0] and 0 <= new_y < map_data.shape[1]:
             # 检查是否是可通行区域（值为1）
-            if map_data[new_x, new_y] > 0:
+            if map_data[new_x, new_y] > 0.5:
                 neighbors.append((new_x, new_y))
     return neighbors
 
@@ -35,8 +35,8 @@ def is_path_free(p1, p2, map_data):
     """检查两点之间的路径是否无障碍"""
     x1, y1 = p1
     x2, y2 = p2
-    points = np.linspace([x1, y1], [x2, y2], num=20).astype(int)
-    return all(map_data[x, y] > 0 for x, y in points)
+    points = np.linspace([x1, y1], [x2, y2], num=20).astype(int) #在p1、p2之间均匀生成20个点，并检查这些点是否在障碍物上
+    return all(map_data[x, y] > 0 for x, y in points) # 检查20个点是否在障碍上
 
 def path_smoothing(path, map_data):
     """对路径进行平滑处理"""
