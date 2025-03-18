@@ -5,6 +5,7 @@ from dijkstra import dijkstra
 from astar import astar
 from prm import prm
 from astar_prm import astar_prm
+from dqn import dqn  # 导入DQN算法
 from utils import calculate_path_metrics
 from visualization import visualize_results
 
@@ -50,9 +51,10 @@ def main():
     dijkstra_result = dijkstra(map_data, start, goal)
     astar_prm_result = astar_prm(map_data, start, goal)
     prm_result = prm(map_data, start, goal)
+    dqn_result = dqn(map_data, start, goal)  # 运行DQN算法
     
     # 可视化结果对比
-    visualize_results(map_data, start, goal, astar_result, dijkstra_result, astar_prm_result, prm_result)
+    visualize_results(map_data, start, goal, astar_result, dijkstra_result, astar_prm_result, prm_result, dqn_result)
 
 if __name__ == '__main__':
     main()
